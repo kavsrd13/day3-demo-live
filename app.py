@@ -11,8 +11,7 @@ def user():
     connection = sqlite3.connect("users.db")
     try:
         cursor = connection.cursor()
-        query = "SELECT * FROM users WHERE name = '" + username + "'"
-        cursor.execute(query)
+        cursor.execute("SELECT * FROM users WHERE name = ?", (username,))
         return str(cursor.fetchall())
     finally:
         connection.close()
